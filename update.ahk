@@ -1,27 +1,24 @@
 ﻿Url := "https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk"  ; <-- Ссылка на твой файл
-DownloadPath := A_Temp "\test.ahk"
+DownloadPath := A_ScriptDir "\test.ahk"  ; Сохраняем файл в ту же папку, где лежит update.ahk
 
-; Скачиваем новый файл при старте
-UrlDownloadToFile, %Url%, %DownloadPath%
+; Функция обновления файла
+CheckForUpdate() {
+    global Url, DownloadPath
+    UrlDownloadToFile, %Url%, %DownloadPath%
 
-; Проверяем, скачался ли файл
-if FileExist(DownloadPath) {
-    Process, Close, test.ahk  ; Закрываем старую версию перед запуском новой
-    Sleep, 500  ; Небольшая пауза
-    Run, %DownloadPath%  ; Запускаем новый скрипт
-} else {
-    MsgBox, Ошибка: файл test.ahk не скачался!
+    ; Проверяем, скачался ли новый файл
+    if FileExist(DownloadPath) {
+        Process, Close, AutoHotkey.exe  ; Закрываем старую версию
+        Sleep, 1000  ; Ждём 1 сек для корректного завершения
+        Run, %DownloadPath%  ; Запускаем новую версию
+    } else {
+        MsgBox, Ошибка: файл test.ahk не скачался!
+    }
 }
 
-; Устанавливаем таймер на проверку обновлений каждую минуту (60 000 мс)
-SetTimer, CheckForUpdate, 1000
+; Первая проверка при запуске
+CheckForUpdate()
 
-CheckForUpdate:
-    UrlDownloadToFile, https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk, %A_Temp%\test.ahk
-    
-    if FileExist(A_Temp "\test.ahk") {
-        Process, Close, test.ahk  ; Закрываем старую версию
-        Sleep, 500  ; Небольшая пауза перед запуском
-        Run, %A_Temp%\test.ahk  ; Запускаем новую версию
-    }
+; Устанавливаем таймер на проверку обновлений каждую минуту
+SetTimer, CheckForUpdate, 60000
 return
