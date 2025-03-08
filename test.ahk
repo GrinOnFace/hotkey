@@ -28,7 +28,7 @@ Y := ScreenHeight - Height - Margin
 ; Размещаем окно
 Gui, Show, x%X% y%Y% w%Width% h%Height%, FrontendOverlay
 
-WinSet, Transparent, 150, FrontendOverlay  ; Повышенная прозрачность
+WinSet, Transparent, 200, FrontendOverlay  ; Повышенная прозрачность
 
 return
 
