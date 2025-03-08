@@ -1,16 +1,17 @@
-﻿Url := "https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk"  ; <-- Твой URL
+﻿Url := "https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk"  ; <-- Ссылка на актуальный скрипт
 DownloadPath := A_ScriptDir "\test.ahk"
 
-^!t::
-    ; Удаляем старый файл перед скачиванием
+^!t::  ; Горячая клавиша: Ctrl + Alt + T
+    ; Удаляем старый файл
     if FileExist(DownloadPath) {
         FileDelete, %DownloadPath%
     }
 
-    ; Скачиваем последнюю версию с GitHub
-    UrlDownloadToFile, %Url%, %DownloadPath%
+    ; Генерируем уникальный URL, чтобы обойти кеширование
+    UniqueUrl := Url "?nocache=" A_TickCount
+    UrlDownloadToFile, %UniqueUrl%, %DownloadPath%
 
-    ; Проверяем, скачался ли файл
+    ; Проверяем, скачался ли новый файл
     if FileExist(DownloadPath) {
         Run, %DownloadPath%  ; Запускаем test.ahk
     }
