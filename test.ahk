@@ -4,7 +4,7 @@
 
 Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20  ; Окно без рамок и поверх всех окон
 Gui, Color, 000000  ; Чёрный фон
-Gui, Font, s18 cFFFFFF, Arial  ; Белый текст, размер 18, шрифт Arial
+Gui, Font, s18 cFFFFFF, Arial  ; Ярко-белый текст, размер 18, шрифт Arial
 
 ; Добавляем текст с JS-кодом
 Gui, Add, Text, Center, 🔥 Test1 - это магия! 🔥`nHTML, CSS, JavaScript — сила в твоих руках!`n
@@ -17,10 +17,11 @@ ScreenWidth := A_ScreenWidth
 ScreenHeight := A_ScreenHeight
 
 ; Вычисляем новую позицию (правый нижний угол)
-Width := 400
+Width := 500
 Height := ScreenHeight * 2 / 3  ; 2/3 высоты экрана
-X := ScreenWidth - Width - 200  ; Отступ 20px от правого края
-Y := ScreenHeight - Height - 200  ; Отступ 20px от нижнего края
+Margin := 40  ; Увеличенный отступ от края
+X := ScreenWidth - Width - Margin
+Y := ScreenHeight - Height - Margin
 
 ; Размещаем окно
 Gui, Show, x%X% y%Y% w%Width% h%Height%, FrontendOverlay
