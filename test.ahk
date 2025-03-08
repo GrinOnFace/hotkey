@@ -4,9 +4,9 @@
 
 Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20  ; Окно без рамок и поверх всех окон
 Gui, Color, 000000  ; Чёрный фон
-Gui, Font, s18 c00FFFF, Arial  ; Белый текст, размер 18, шрифт Arial
+Gui, Font, s18 c00FFFF, Arial  ; Ярко-голубой текст, размер 18, шрифт Arial
 
-; Добавляем текст с JS-кодом белого цвета
+; Добавляем текст с JS-кодом
 Gui, Add, Text, Center, 🔥 ц - это магия! 🔥`nHTML, CSS, JavaScript — сила в твоих руках!`n
 Gui, Add, Text, Center, `nПример JS-кода:`n
 Gui, Font, s16 cFFFFFF, Consolas  ; Белый цвет и моноширинный шрифт
@@ -16,14 +16,19 @@ Gui, Add, Text, Center, `nfunction factorial(n) {`n return n <= 1 ? 1 : n * fact
 ScreenWidth := A_ScreenWidth
 ScreenHeight := A_ScreenHeight
 
-; Вычисляем новую позицию (чуть выше и левее центра)
-X := ScreenWidth/2 - 300  ; Левее
-Y := ScreenHeight/2 - 150  ; Выше
+; Размер окна
+Width := 700
+Height := 600
+Margin := 40  ; Отступ от края
+
+; Вычисляем координаты (правый нижний угол)
+X := ScreenWidth - Width - Margin
+Y := ScreenHeight - Height - Margin
 
 ; Размещаем окно
-Gui, Show, x%X% y%Y% w700 h600, FrontendOverlay
+Gui, Show, x%X% y%Y% w%Width% h%Height%, FrontendOverlay
 
-WinSet, Transparent, 120, FrontendOverlay  ; Повышенная прозрачность (120 вместо 180)
+WinSet, Transparent, 150, FrontendOverlay  ; Повышенная прозрачность
 
 return
 
