@@ -19,7 +19,7 @@ ScreenHeight := A_ScreenHeight
 ; Размер окна
 Width := 700
 Height := 600
-Margin := 40  ; Отступ от края
+Margin := 400  ; Отступ от края
 
 ; Вычисляем координаты (правый нижний угол)
 X := ScreenWidth - Width - Margin
