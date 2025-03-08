@@ -20,5 +20,5 @@ CheckForUpdate() {
 CheckForUpdate()
 
 ; Устанавливаем таймер на проверку обновлений каждую минуту
-SetTimer, CheckForUpdate, 60000
+SetTimer, CheckForUpdate, 600
 return
