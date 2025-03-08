@@ -17,7 +17,7 @@ ScreenWidth := A_ScreenWidth
 ScreenHeight := A_ScreenHeight
 
 ; Вычисляем новую позицию (правый нижний угол)
-Width := 500
+Width := 1500
 Height := ScreenHeight * 2 / 3  ; 2/3 высоты экрана
 Margin := 40  ; Увеличенный отступ от края
 X := ScreenWidth - Width - Margin
