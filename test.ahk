@@ -7,7 +7,7 @@ Gui, Color, 000000  ; Чёрный фон
 Gui, Font, s18 c00FFFF, Arial  ; Ярко-голубой текст, размер 18, шрифт Arial
 
 ; Добавляем текст с JS-кодом
-Gui, Add, Text, Center, 🔥 ц - это магия! 🔥`nHTML, CSS, JavaScript — сила в твоих руках!`n
+Gui, Add, Text, Center, 🔥 ОТВЕТ - это магия! 🔥`nHTML, CSS, JavaScript — сила в твоих руках!`n
 Gui, Add, Text, Center, `nПример JS-кода:`n
 Gui, Font, s16 cFFFFFF, Consolas  ; Белый цвет и моноширинный шрифт
 Gui, Add, Text, Center, `nfunction factorial(n) {`n return n <= 1 ? 1 : n * factorial(n - 1); `n}`nconsole.log(factorial(5));
