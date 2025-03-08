@@ -21,7 +21,7 @@ X := ScreenWidth/2 - 300  ; Левее
 Y := ScreenHeight/2 - 150  ; Выше
 
 ; Размещаем окно
-Gui, Show, x%X% y%Y% w1000 h600, FrontendOverlay
+Gui, Show, x%X% y%Y% w700 h600, FrontendOverlay
 
 WinSet, Transparent, 120, FrontendOverlay  ; Повышенная прозрачность (120 вместо 180)
 
