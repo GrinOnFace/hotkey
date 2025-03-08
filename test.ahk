@@ -19,8 +19,8 @@ ScreenHeight := A_ScreenHeight
 ; Вычисляем новую позицию (правый нижний угол)
 Width := 400
 Height := ScreenHeight * 2 / 3  ; 2/3 высоты экрана
-X := ScreenWidth - Width - 20  ; Отступ 20px от правого края
-Y := ScreenHeight - Height - 20  ; Отступ 20px от нижнего края
+X := ScreenWidth - Width - 200  ; Отступ 20px от правого края
+Y := ScreenHeight - Height - 200  ; Отступ 20px от нижнего края
 
 ; Размещаем окно
 Gui, Show, x%X% y%Y% w%Width% h%Height%, FrontendOverlay
