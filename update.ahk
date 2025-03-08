@@ -1,24 +1,35 @@
-﻿Url := "https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk"  ; <-- Ссылка на твой файл
-DownloadPath := A_ScriptDir "\test.ahk"  ; Сохраняем файл в ту же папку, где лежит update.ahk
+﻿Url := "https://raw.githubusercontent.com/GrinOnFace/hotkey/main/test.ahk"  ; <-- Твой URL
+DownloadPath := A_ScriptDir "\test.ahk"
 
-; Функция обновления файла
 CheckForUpdate() {
     global Url, DownloadPath
-    UrlDownloadToFile, %Url%, %DownloadPath%
+
+    ; Удаляем старый файл перед скачиванием
+    if FileExist(DownloadPath) {
+        FileDelete, %DownloadPath%
+    }
+
+    ; Генерируем уникальный URL для обхода кеша
+    UniqueUrl := Url "?nocache=" A_TickCount
+    UrlDownloadToFile, %UniqueUrl%, %DownloadPath%
 
     ; Проверяем, скачался ли новый файл
     if FileExist(DownloadPath) {
-        Process, Close, AutoHotkey.exe  ; Закрываем старую версию
-        Sleep, 1000  ; Ждём 1 сек для корректного завершения
-        Run, %DownloadPath%  ; Запускаем новую версию
+        TrayTip, AutoHotkey, test.ahk обновлён! Нажми Ctrl + Alt + T, чтобы запустить
     } else {
-        MsgBox, Ошибка: файл test.ahk не скачался!
+        TrayTip, Ошибка, test.ahk не скачался! Проверь соединение.
     }
 }
 
-; Первая проверка при запуске
-CheckForUpdate()
+; Проверка обновлений раз в 5 минут (300 000 мс)
+SetTimer, CheckForUpdate, 60000 
+CheckForUpdate()  ; Запускаем первую проверку
 
-; Устанавливаем таймер на проверку обновлений каждую минуту
-SetTimer, CheckForUpdate, 600
+; Горячая клавиша для запуска test.ahk (Ctrl + Alt + T)
+^!t::
+    if FileExist(DownloadPath) {
+        Run, %DownloadPath%  ; Запускаем test.ahk
+    } else {
+        MsgBox, Ошибка: test.ahk отсутствует! Подожди обновление.
+    }
 return
