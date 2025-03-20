@@ -3,7 +3,7 @@
 #SingleInstance Force
 
 Gui, +AlwaysOnTop +ToolWindow -Caption +E0x20  ; Окно без рамок и поверх всех окон
-Gui, Color, 000000  ; Чёрный фон
+Gui, Color, 111111  ; Чёрный фон
 Gui, Font, s18 c00FFFF, Arial  ; Ярко-голубой текст, размер 18, шрифт Arial
 
 ; Добавляем текст с JS-кодом
